@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Compress HTML – Minify your HTML Files Online</title>
+	<meta content="Optimize your site by using Compress HTML, a tool that offers minification to reduce the file size of your HTML files. Strip comments, linebreaks, spaces and more." name="description">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<link href="https://compresshtml.com/" rel="canonical">
+	<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="top-pane">
+		<header>
+			<div class="brand">
+				<a href="/"><i class="logo"></i><h1>Compress HTML</h1></a>
+			</div>
+
+			<div class="tools">
+				<ul><li class="selected"><a href="/">HTML</a></li><li><a href="https://compresscss.net/">CSS</a></li><li><a href="https://compressjavascript.com/">JS</a></li></ul>
+			</div>
+
+			<div class="links">
+				<ul>
+					<li><a href="#" id="abt-btn">About</a>
+					</li>
+
+					<li class="dropdown-btn"><a href="#">More Tools <i class="down"></i></a>
+						<ul class="dropdown">
+							<li class="sjs"><a href="https://compressjavascript.com/">
+								<strong>Compress JavaScript</strong>
+								<span>Online JavaScript files compressor</span>
+							</a>
+							</li>
+							<li class="scss"><a href="https://compresscss.net/">
+								<strong>Compress CSS</strong>
+								<span>Online CSS files compressor</span>
+							</a>
+							</li>
+							<li class="snote"><a href="https://onlinenotepad.org/">
+								<strong>Online Notepad</strong>
+								<span>Simple browser-based text editor</span>
+							</a>
+							</li>
+							<li class="sfr"><a href="https://findreplace.org/">
+								<strong>Find & Replace</strong>
+								<span>Advanced search and replace tool</span>
+							</a>
+							</li>
+						</ul>
+					</li>
+					<li><a href="https://www.addtoany.com/share" rel="nofollow" onclick='window.open(this.href,"_blank","height=400,width=600");return false;'><i class="share"></i></a>
+					</li>
+				</ul>
+			</div>
+		</header>
+
+		<div class="menu">
+			<div class="actions">
+				<ul><li><input type="button" value="Compress" id="minify-btn"></li><li><input type="button" value="Options" id="opt-btn"></li><li><input type="button" value="Reset" class="reset" id="clear-all"></li></ul>
+			</div>
+
+			<div id="savings">
+				<ul><li><span id="source_code"></span></li><li><span id="compressed"></span></li><li><span id="percent"></span></li></ul>
+			</div>
+
+			<div id="download">
+				<ul><li><input type="button" value="Download" id="saves" onclick="saveTextAsFile()"></li></ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="abt-bg"></div>
+	<div id="abt-box">
+	  <div id="abt-head"><h3>About</h3><span id="abt-x"><i class="close"></i></span></div>
+		<div class="about">
+			<h3>Introduction</h3>
+			<p>HTMLCompress is a free tool to compress HTML files online. CompressHTML produces the lowest file size without breaking the code its minifying. It will compress the whole HTML page, including the JavaScript and CSS codes enclosed in <code>script</code> and <code>style</code> tags.</p>
+
+			<br>
+			<h3>Why should I compress my HTML files?</h3>
+			<p> There is so much room for minification in HTML, CSS and JS. Typically you can reduce the size of the file by 20% by simply removing unneccesary white spaces, line breaks and comments. Smaller file size means less bandwidth consumption, so by compressing you're not only saving up money on hosting but you're also making your site load faster.</p>
+
+			<br>
+			<h3>Usage</h3>
+			<p>As always, you must create a backup first before using the compressor. We are not liable for any loss or damage to your code. Also you might want to have the original copy of your HTML for future development.</p>
+			<ol>
+				<li>Paste your <code>.html</code> cide into the "Input" box.</li>
+				<li>Go to "Options" and configure the settings to your liking. Simply tick the checbox if you want to enable that specific option.
+					<li>Click the "Compress" button and wait for the tool to finish minifying your code. It shouldn't take more than a few seconds.</li>
+					<li>If you've done it correctly, the compressed code should now appear on the right pane. Highlight the code <code>Ctrl + A</code> and right click then copy it. Feel free to use the quick download button if you want to save the html file directly on your computer.</li>
+			</ol>
+
+			<br>
+			<p><b>Note:</b> If you want to exclude certain part of your code from compression, simply wrap that part with <code>&lt;!-- htmlmin:ignore --&gt;</code> tag.</p>
+		</div>
+	</div>
+
+
+	<div class="left-pane">
+		<textarea id="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus></textarea>
+		<span class="label">Input</span>
+	</div>
+
+	<div class="right-pane">
+		<textarea id="output" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+		<span class="label">Output</span>
+		<div id="compressing">
+		  <div class="loader_wrap">
+		    <div id="loader">
+		      Compressing...
+		    </div>
+		  </div>
+		</div>
+		<div id="error"></div>
+	</div>
+
+
+<div id="opt-bg"></div>
+<div id="opt-box">
+  <div id="opt-head"><h3>Options</h3><span id="opt-x"><i class="close"></i></span></div>
+  	<div class="opt-options" id="options">
+		<div class="controls">
+			<span>Select:</span>
+			<a href="#" id="select-all">All</a> | 
+			<a href="#" id="select-none">None</a> | 
+			<a href="#" id="select-defaults">Default</a>
+		</div>
+
+		<ul>
+			<li>
+				<input type="checkbox" id="caseSensitive">
+				<label for="caseSensitive">
+					Case-sensitive
+				</label>
+				<span>
+	              Treat attributes in case sensitive manner (useful for custom HTML tags)
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="collapseBooleanAttributes" checked="">
+				<label for="collapseBooleanAttributes">
+					Collapse boolean attributes
+				</label>
+				<span>
+	              Omit attribute values from boolean attributes
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="collapseInlineTagWhitespace">
+				<label for="collapseInlineTagWhitespace" class="unsafe">
+					Collapse inline tag whitespace
+				</label>
+				<span>
+	              Don't leave any spaces between <code>display:inline;</code> elements when collapsing.
+	              Must be used in conjunction with <code>collapseWhitespace=true</code>
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="collapseWhitespace" checked="">
+				<label for="collapseWhitespace">
+					Collapse whitespace
+				</label>
+				<span>
+	              Collapse white space that contributes to text nodes in a document tree
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="conservativeCollapse">
+				<label for="conservativeCollapse">
+					Conservative collapse
+				</label>
+				<span>
+	              Always collapse to 1 space (never remove it entirely).
+	              Must be used in conjunction with <code>collapseWhitespace=true</code>
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="decodeEntities" checked="">
+				<label for="decodeEntities">
+					Decode Entity Characters
+				</label>
+				<span>
+	              Use direct Unicode characters whenever possible
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="html5" checked="">
+				<label for="html5">
+					HTML5
+				</label>
+				<span>
+	              Parse input according to HTML5 specifications
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="includeAutoGeneratedTags">
+				<label for="includeAutoGeneratedTags">
+					Include auto-generated tags
+				</label>
+				<span>
+	              Insert tags generated by HTML parser
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="keepClosingSlash">
+				<label for="keepClosingSlash">
+					Keep closing slash
+				</label>
+				<span>
+	              Keep the trailing slash on singleton elements
+	            </span>
+			</li>
+			<li>
+				<label for="maxLineLength">
+					Max. line length
+				</label>
+				<input type="text" id="maxLineLength">
+				<span>
+	              Specify a maximum line length. Compressed output will be split by newlines at valid HTML split-points
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="minifyCSS" checked="">
+				<label for="minifyCSS">
+					Minify CSS
+				</label>
+				<span>
+				  Use Clean-CSS to minify CSS in style elements and attributes
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="minifyJS" checked="">
+				<label for="minifyJS">
+					Minify JavaScript
+				</label>
+				<span>
+				  Use UglifyJS to minify JavaScript in script elements and attributes
+	            </span>
+			</li>
+			<li>
+				<label for="minifyURLs">
+					Minify URLs
+				</label>
+				<input type="text" id="minifyURLs">
+				<span>
+	              Minify URLs in various attributes (uses <code>relateurl</code>)
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="preserveLineBreaks">
+				<label for="preserveLineBreaks">
+					Preserve line-breaks
+				</label>
+				<span>
+	              Always collapse to 1 line break (never remove it entirely) when whitespace between tags include a line break.
+	              Must be used in conjunction with <code>collapseWhitespace=true</code>
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="preventAttributesEscaping">
+				<label for="preventAttributesEscaping" class="unsafe">
+					Prevent attributes escaping
+				</label>
+				<span>
+	              Prevents the escaping of the values of attributes
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="processConditionalComments" checked="">
+				<label for="processConditionalComments">
+					Process conditional comments
+				</label>
+				<span>
+	              Process contents of conditional comments through minifier
+	            </span>
+			</li>
+			<li>
+				<label for="processScripts">
+					Process scripts
+				</label>
+				<input type="text" id="processScripts" value="text/html">
+				<span>
+	              Comma-delimited string corresponding to types of script elements to process through minifier (e.g. <code>text/ng-template, text/x-handlebars-template</code>)
+	            </span>
+			</li>
+			<li>
+				<label for="quoteCharacter">
+					Quote character
+				</label>
+				<input type="text" id="quoteCharacter">
+				<span>
+	              Type of quote to use for attribute values (<code>'</code> or <code>"</code>)
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="removeAttributeQuotes" checked="">
+				<label for="removeAttributeQuotes">
+					Remove attribute quotes
+				</label>
+				<span>
+	              Remove quotes around attributes when possible
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="removeComments" checked="">
+				<label for="removeComments">
+					Remove comments
+				</label>
+				<span>
+	              Strip HTML comments
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="removeEmptyAttributes" checked="">
+				<label for="removeEmptyAttributes">
+					Remove empty attributes
+				</label>
+				<span>
+	              Remove all attributes with whitespace-only values
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="removeEmptyElements">
+				<label for="removeEmptyElements" class="unsafe">
+					Remove empty elements
+				</label>
+				<span>
+	              Remove all elements with empty contents
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="removeOptionalTags">
+				<label for="removeOptionalTags">
+					Remove optional tags
+				</label>
+				<span>
+				 Strips end tags of html, head, body, and table elements
+				</span>
+			</li>
+			<li>
+				<input type="checkbox" id="removeRedundantAttributes" checked="">
+				<label for="removeRedundantAttributes">
+					Remove redundant attributes
+				</label>
+				<span>
+	              Remove attributes when value matches default.
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="removeScriptTypeAttributes" checked="">
+				<label for="removeScriptTypeAttributes">
+					Remove script type attributes
+				</label>
+				<span>
+	              Remove <code>type="text/javascript"</code> from <code>script</code> tags.
+	              Other <code>type</code> attribute values are left intact
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="removeStyleLinkTypeAttributes" checked="">
+				<label for="removeStyleLinkTypeAttributes">
+					Remove style link type attributes
+				</label>
+				<span>
+	              Remove <code>type="text/css"</code> from <code>style</code> and <code>link</code> tags.
+	              Other <code>type</code> attribute values are left intact
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="removeTagWhitespace">
+				<label for="removeTagWhitespace" class="unsafe">
+					Remove tag whitespace
+				</label>
+				<span>
+	              Remove space between attributes whenever possible. Note that this will result in invalid HTML!
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="sortAttributes" checked="">
+				<label for="sortAttributes" class="unsafe">
+					Sort attributes
+				</label>
+				<span>
+	              Sort attributes by frequency
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="sortClassName" checked="">
+				<label for="sortClassName" class="unsafe">
+					Sort class name
+				</label>
+				<span>
+	              Sort style classes by frequency
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="trimCustomFragments" checked="">
+				<label for="trimCustomFragments">
+					Trim white space around custom fragments
+				</label>
+				<span>
+	              Trim white space around <code>ignoreCustomFragments</code>.
+	            </span>
+			</li>
+			<li>
+				<input type="checkbox" id="useShortDoctype" checked="">
+				<label for="useShortDoctype">
+					Use short doctype
+				</label>
+				<span>
+	              Replaces the <code>doctype</code> with the short (HTML5) <code>doctype</code>
+	            </span>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+	<div class="bottom-pane">
+		<style>
+		.HTML_banner { width: 320px; height: 100px; }
+		@media(min-width: 472px) { .HTML_banner { width: 468px; height: 100px; } }
+		@media(min-width: 732px) { .HTML_banner { width: 728px; height: 90px; } }
+		@media(min-width:974px) { .HTML_banner { width: 970px; height: 90px; }}
+		</style>
+		<!-- HTML_banner -->
+		<ins class="adsbygoogle HTML_banner" style="display:inline-block" data-ad-client="ca-pub-2859608055830984" data-ad-slot="2335562845"></ins>
+		<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/minifier.js"></script>
+	<script src="js/master.js"></script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</body>
+</html>
