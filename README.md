@@ -1,6 +1,6 @@
 # CompressJavaScript – Online JS Minifier
 
-[Compress HTML](https://compresshtml.com/) is a free tool to compress HTML files online. CompressHTML produces the lowest file size without breaking the code its minifying. It will compress the whole HTML page, including the JavaScript and CSS codes enclosed in `script` and `style` tags.
+[Compress HTML](https://compresshtml.com/) is a free tool to compress HTML files online. CompressHTML produces the lowest file size without breaking the code its minifying. It will compress the whole HTML page, including the JavaScript and CSS codes enclosed in `script` and `style` tags. It is powered by html minifier by kangax.
 
 ## Why should I compress my HTML files?
 There is so much room for minification in HTML, CSS and JS. Typically you can reduce the size of the file by 20% by simply removing unneccesary white spaces, line breaks and comments. Smaller file size means less bandwidth consumption, so by compressing you're not only saving up money on hosting but you're also making your site load faster.
